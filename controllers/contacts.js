@@ -18,7 +18,65 @@ const getContactById = async (req, res) => {
     });
 };
 
+const createContact = async (req, res) => {
+    if (!req.body) {
+        return res.status(400).json({ message: 'Request body is required.' });
+    }
+
+    const newContact = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        favoriteColor: req.body.favoriteColor,
+        birthday: req.body.birthday
+    };
+    const response = await mongodb.getDatabase().db().collection('contacts').insertOne(newContact);
+    res.setHeader('Content-Type', 'application/json');
+    if (response.acknowledged) {
+        res.status(204).send();
+    } else {
+        res.status(500).json(response.error || 'Some error occurred while adding the user.');
+    }
+};
+
+const updateContact = async (req, res) => {
+    const contactId = new ObjectId(req.params.id);
+    if (!req.body) {
+        return res.status(400).json({ message: 'Request body is required.' });
+    }
+
+    const updatedContact = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        favoriteColor: req.body.favoriteColor,
+        birthday: req.body.birthday,
+    };
+    const response = await mongodb.getDatabase().db().collection('contacts').replaceOne({ _id: contactId }, updatedContact);
+    res.setHeader('Content-Type', 'application/json');
+    if (response.modifiedCount > 0) {
+        res.status(204).send();
+    } else {
+        res.status(500).json(response.error || 'Some error occurred while updating the user.');
+    }
+};
+
+const deleteContact = async (req, res) => {
+    const contactId = new ObjectId(req.params.id);
+    const response = await mongodb.getDatabase().db().collection('contacts').deleteOne({ _id: contactId });
+    res.setHeader('Content-Type', 'application/json');
+    if (response.deletedCount > 0) {
+        res.status(204).send();
+    } else {
+        res.status(500).json(response.error || 'Some error occurred while deleting the user.');
+    }
+};
+
+
 module.exports = {
     getAllContacts,
-    getContactById
+    getContactById,
+    createContact,
+    updateContact,
+    deleteContact
 };
