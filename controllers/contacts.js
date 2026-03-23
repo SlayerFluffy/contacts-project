@@ -4,7 +4,11 @@ const ObjectId = require('mongodb').ObjectId;
 const getAllContacts = async (req, res) => {
     // #swagger.tags = ['Contacts']
     const result = await mongodb.getDatabase().db().collection('contacts').find();
-    result.toArray().then((contacts) => {
+    result.toArray((err, lists) => {
+        if (err) {
+            res.status(500).json({ message: err.message || 'Some error occurred while retrieving contacts.' });
+        }
+    }).then((contacts) => {
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json(contacts);
     });
@@ -12,6 +16,9 @@ const getAllContacts = async (req, res) => {
 
 const getContactById = async (req, res) => {
     // #swagger.tags = ['Contacts']
+    if (!ObjectId.isValid(req.params.id)) {
+        return res.status(400).json({ message: 'Invalid contact ID.' });
+    }
     const contactId = new ObjectId(req.params.id);
     const result = await mongodb.getDatabase().db().collection('contacts').find({ _id: contactId });
     result.toArray().then((contacts) => {
@@ -36,7 +43,7 @@ const createContact = async (req, res) => {
     const response = await mongodb.getDatabase().db().collection('contacts').insertOne(newContact);
     res.setHeader('Content-Type', 'application/json');
     if (response.acknowledged) {
-        res.status(204).send();
+        res.status(201).json(newContact);
     } else {
         res.status(500).json(response.error || 'Some error occurred while adding the user.');
     }
@@ -44,6 +51,9 @@ const createContact = async (req, res) => {
 
 const updateContact = async (req, res) => {
     // #swagger.tags = ['Contacts']
+    if (!ObjectId.isValid(req.params.id)) {
+        return res.status(400).json({ message: 'Invalid contact ID.' });
+    }
     const contactId = new ObjectId(req.params.id);
     if (!req.body) {
         return res.status(400).json({ message: 'Request body is required.' });
@@ -59,7 +69,7 @@ const updateContact = async (req, res) => {
     const response = await mongodb.getDatabase().db().collection('contacts').replaceOne({ _id: contactId }, updatedContact);
     res.setHeader('Content-Type', 'application/json');
     if (response.modifiedCount > 0) {
-        res.status(204).send();
+        res.status(200).json(updatedContact);
     } else {
         res.status(500).json(response.error || 'Some error occurred while updating the user.');
     }
@@ -67,11 +77,14 @@ const updateContact = async (req, res) => {
 
 const deleteContact = async (req, res) => {
     // #swagger.tags = ['Contacts']
+    if (!ObjectId.isValid(req.params.id)) {
+        return res.status(400).json({ message: 'Invalid contact ID.' });
+    }
     const contactId = new ObjectId(req.params.id);
     const response = await mongodb.getDatabase().db().collection('contacts').deleteOne({ _id: contactId });
     res.setHeader('Content-Type', 'application/json');
     if (response.deletedCount > 0) {
-        res.status(204).send();
+        res.status(200).json({ message: 'Contact deleted successfully.' });
     } else {
         res.status(500).json(response.error || 'Some error occurred while deleting the user.');
     }
