@@ -8,6 +8,7 @@ router.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-router.use('/contacts', require('./contacts'));
+router.use('/characters', require('./characters'));
+router.use('/users', require('./users'));
 
 module.exports = router;
