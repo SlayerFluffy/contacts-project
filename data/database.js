@@ -3,7 +3,7 @@ dotenv.config();
 
 const MongoClient = require('mongodb').MongoClient;
 
-let database;
+let database;    
 
 const initDb = (callback) => {
     if (database) {
@@ -27,27 +27,7 @@ const getDatabase = () => {
     return database;
 };
 
-const getDbByName = (dbName) => {
-    if (!database) {
-        throw Error("Database not initialized");
-    }
-
-    return database.db(dbName);
-};
-
-const getUsersDb = () => {
-    const usersDbName = process.env.MONGODB_DB_USERS || 'Users';
-    return getDbByName(usersDbName);
-};
-
-const getCharactersDb = () => {
-    const charactersDbName = process.env.MONGODB_DB_CHARACTERS || 'Characters';
-    return getDbByName(charactersDbName);
-};
-
 module.exports = {
     initDb,
-    getDatabase,
-    getUsersDb,
-    getCharactersDb
+    getDatabase
 };

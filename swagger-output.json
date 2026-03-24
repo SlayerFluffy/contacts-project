@@ -1,14 +1,13 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "DnD Characters API",
-    "description": "API for managing DnD Characters",
+    "title": "Contacts API",
+    "description": "API for managing contacts",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "contacts-project-mpcu.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http",
     "https"
   ],
   "paths": {
@@ -35,10 +34,10 @@
         }
       }
     },
-    "/characters/": {
+    "/contacts/": {
       "get": {
         "tags": [
-          "Characters"
+          "Contacts"
         ],
         "description": "",
         "produces": [
@@ -47,15 +46,12 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
       "post": {
         "tags": [
-          "Characters"
+          "Contacts"
         ],
         "description": "",
         "produces": [
@@ -65,131 +61,34 @@
           {
             "name": "body",
             "in": "body",
-            "required": true,
             "schema": {
               "type": "object",
               "properties": {
-                "charName": {
-                  "type": "string",
-                  "example": "Arannis"
+                "firstName": {
+                  "example": "any"
                 },
-                "charRace": {
-                  "type": "string",
-                  "example": "Elf"
+                "lastName": {
+                  "example": "any"
                 },
-                "charClass": {
-                  "type": "string",
-                  "example": "Ranger"
+                "email": {
+                  "example": "any"
                 },
-                "charLevel": {
-                  "type": "number",
-                  "example": 5
+                "favoriteColor": {
+                  "example": "any"
                 },
-                "charAlignment": {
-                  "type": "string",
-                  "example": "Neutral Good"
-                },
-                "charBackground": {
-                  "type": "string",
-                  "example": "Outlander"
-                },
-                "charAge": {
-                  "type": "number",
-                  "example": 120
-                },
-                "charHeight": {
-                  "type": "number",
-                  "example": 72
-                },
-                "charWeight": {
-                  "type": "number",
-                  "example": 160
-                },
-                "charEyes": {
-                  "type": "string",
-                  "example": "Green"
-                },
-                "charSkin": {
-                  "type": "string",
-                  "example": "Fair"
-                },
-                "charBonds": {
-                  "type": "string",
-                  "example": "Protect my homeland"
-                },
-                "charFlaws": {
-                  "type": "string",
-                  "example": "Too trusting"
-                },
-                "charIdeals": {
-                  "type": "string",
-                  "example": "Freedom"
-                },
-                "charPersonalityTraits": {
-                  "type": "string",
-                  "example": "Calm under pressure"
-                },
-                "hp": {
-                  "type": "number",
-                  "example": 42
-                },
-                "ac": {
-                  "type": "number",
-                  "example": 16
-                },
-                "str": {
-                  "type": "number",
-                  "example": 14
-                },
-                "dex": {
-                  "type": "number",
-                  "example": 17
-                },
-                "con": {
-                  "type": "number",
-                  "example": 13
-                },
-                "int": {
-                  "type": "number",
-                  "example": 12
-                },
-                "wis": {
-                  "type": "number",
-                  "example": 15
-                },
-                "cha": {
-                  "type": "number",
-                  "example": 10
+                "birthday": {
+                  "example": "any"
                 }
-              },
-              "required": [
-                "charName",
-                "charRace",
-                "charClass",
-                "charLevel",
-                "charAlignment",
-                "charBackground",
-                "hp",
-                "ac",
-                "str",
-                "dex",
-                "con",
-                "int",
-                "wis",
-                "cha"
-              ]
+              }
             }
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
+          "204": {
+            "description": "No Content"
           },
           "400": {
             "description": "Bad Request"
-          },
-          "412": {
-            "description": "Precondition Failed"
           },
           "500": {
             "description": "Internal Server Error"
@@ -197,10 +96,10 @@
         }
       }
     },
-    "/characters/{id}": {
+    "/contacts/{id}": {
       "get": {
         "tags": [
-          "Characters"
+          "Contacts"
         ],
         "description": "",
         "produces": [
@@ -217,15 +116,12 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
           }
         }
       },
       "put": {
         "tags": [
-          "Characters"
+          "Contacts"
         ],
         "description": "",
         "produces": [
@@ -241,131 +137,34 @@
           {
             "name": "body",
             "in": "body",
-            "required": true,
             "schema": {
               "type": "object",
               "properties": {
-                "charName": {
-                  "type": "string",
-                  "example": "Arannis"
+                "firstName": {
+                  "example": "any"
                 },
-                "charRace": {
-                  "type": "string",
-                  "example": "Elf"
+                "lastName": {
+                  "example": "any"
                 },
-                "charClass": {
-                  "type": "string",
-                  "example": "Ranger"
+                "email": {
+                  "example": "any"
                 },
-                "charLevel": {
-                  "type": "number",
-                  "example": 5
+                "favoriteColor": {
+                  "example": "any"
                 },
-                "charAlignment": {
-                  "type": "string",
-                  "example": "Neutral Good"
-                },
-                "charBackground": {
-                  "type": "string",
-                  "example": "Outlander"
-                },
-                "charAge": {
-                  "type": "number",
-                  "example": 120
-                },
-                "charHeight": {
-                  "type": "number",
-                  "example": 72
-                },
-                "charWeight": {
-                  "type": "number",
-                  "example": 160
-                },
-                "charEyes": {
-                  "type": "string",
-                  "example": "Green"
-                },
-                "charSkin": {
-                  "type": "string",
-                  "example": "Fair"
-                },
-                "charBonds": {
-                  "type": "string",
-                  "example": "Protect my homeland"
-                },
-                "charFlaws": {
-                  "type": "string",
-                  "example": "Too trusting"
-                },
-                "charIdeals": {
-                  "type": "string",
-                  "example": "Freedom"
-                },
-                "charPersonalityTraits": {
-                  "type": "string",
-                  "example": "Calm under pressure"
-                },
-                "hp": {
-                  "type": "number",
-                  "example": 42
-                },
-                "ac": {
-                  "type": "number",
-                  "example": 16
-                },
-                "str": {
-                  "type": "number",
-                  "example": 14
-                },
-                "dex": {
-                  "type": "number",
-                  "example": 17
-                },
-                "con": {
-                  "type": "number",
-                  "example": 13
-                },
-                "int": {
-                  "type": "number",
-                  "example": 12
-                },
-                "wis": {
-                  "type": "number",
-                  "example": 15
-                },
-                "cha": {
-                  "type": "number",
-                  "example": 10
+                "birthday": {
+                  "example": "any"
                 }
-              },
-              "required": [
-                "charName",
-                "charRace",
-                "charClass",
-                "charLevel",
-                "charAlignment",
-                "charBackground",
-                "hp",
-                "ac",
-                "str",
-                "dex",
-                "con",
-                "int",
-                "wis",
-                "cha"
-              ]
+              }
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "No Content"
           },
           "400": {
             "description": "Bad Request"
-          },
-          "412": {
-            "description": "Precondition Failed"
           },
           "500": {
             "description": "Internal Server Error"
@@ -374,7 +173,7 @@
       },
       "delete": {
         "tags": [
-          "Characters"
+          "Contacts"
         ],
         "description": "",
         "produces": [
@@ -389,205 +188,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/users/": {
-      "get": {
-        "tags": [
-          "Users"
-        ],
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Users"
-        ],
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "firstName": {
-                  "type": "string",
-                  "example": "Drew"
-                },
-                "lastName": {
-                  "type": "string",
-                  "example": "Jezek"
-                },
-                "email": {
-                  "type": "string",
-                  "example": "drew@example.com"
-                },
-                "password": {
-                  "type": "string",
-                  "example": "StrongPassword123"
-                }
-              },
-              "required": [
-                "firstName",
-                "lastName",
-                "email",
-                "password"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "412": {
-            "description": "Precondition Failed"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/users/{id}": {
-      "get": {
-        "tags": [
-          "Users"
-        ],
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Users"
-        ],
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "firstName": {
-                  "type": "string",
-                  "example": "Drew"
-                },
-                "lastName": {
-                  "type": "string",
-                  "example": "Jezek"
-                },
-                "email": {
-                  "type": "string",
-                  "example": "drew@example.com"
-                },
-                "password": {
-                  "type": "string",
-                  "example": "StrongPassword123"
-                }
-              },
-              "required": [
-                "firstName",
-                "lastName",
-                "email",
-                "password"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "412": {
-            "description": "Precondition Failed"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Users"
-        ],
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
+          "204": {
+            "description": "No Content"
           },
           "500": {
             "description": "Internal Server Error"
