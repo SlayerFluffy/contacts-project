@@ -1,18 +1,16 @@
 {
-  "name": "characters-project",
+  "name": "contacts-project",
   "version": "1.0.0",
-  "description": "characters project for cse341",
+  "description": "contacts project for cse341",
   "license": "ISC",
   "author": "Drew Jezek",
   "type": "commonjs",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "swagger": "node ./swagger.js"
+    "start": "node server.js"
   },
   "dependencies": {
-    "bcrypt": "^6.0.0",
     "body-parser": "^2.2.2",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
